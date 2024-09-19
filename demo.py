@@ -4,7 +4,7 @@ import sys
 MONGODB_URL_KEY = "MONGODB_URL"
 
 
-from us_visa.pipline.training_pipeline import TrainPipeline
+from us_visa.pipeline.training_pipeline import TrainPipeline
 
 obj = TrainPipeline()
 obj.run_pipeline()
