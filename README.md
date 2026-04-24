@@ -1,133 +1,151 @@
-# MLOPs-Production-Ready-Machine-Learning-Project
+# 🛂 US Visa Approval Prediction — MLOps Production ML Pipeline
 
-# In this project we are going to use the data given to build a Classification model:
+![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerised-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-API%20Server-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 
-# This model is to check if Visa get approved or not based on the given dataset.
-# This can be used to Recommend a suitable profile for the applicants for whom the visa should be certified or denied based on  the certain criteria which influences the decision.
+---
 
+## 📌 Project Overview
 
-- Flowchart: https://whimsical.com/
-- MLOPs Tool: https://www.evidentlyai.com/
+This is a **production-ready MLOps project** that builds a **US Visa Approval Prediction** system. The model predicts whether a US Visa application will be **certified or denied**, based on applicant profile data.
 
+The project is designed for real-world deployment with **MongoDB** as the data store, **AWS S3** for model registry, **FastAPI** for serving, and **Docker** for containerisation — following complete MLOps best practices.
 
+---
 
-## Git commands
+## 🎯 Business Problem
 
-```bash
-git add .
+Immigration authorities process thousands of visa applications daily. This model helps recommend approval or denial based on structured criteria, enabling faster and more consistent decision-making.
 
-git commit -m "Updated"
+> "Recommend a suitable profile for applicants for whom the visa should be certified or denied based on criteria that influence the decision."
 
-git push origin main
+---
+
+## 🏗️ Architecture & Workflow
+
+### Pipeline Components
+
+```
+1. constants          → Static configuration values
+2. entity             → Data class definitions (config & artifact entities)
+3. components         → Core pipeline logic
+4. pipeline           → Stage orchestration
+5. main.py            → Full pipeline runner
+6. app.py             → FastAPI web server
 ```
 
+### MLOps Stack
 
-## How to run?
+| Component | Tool |
+|-----------|------|
+| Database | MongoDB Atlas |
+| Cloud Storage | AWS S3 (model registry) |
+| API Server | FastAPI |
+| Container | Docker |
+| ML Monitoring | Evidently AI |
+| Flowchart Design | Whimsical |
 
+---
+
+## 📁 Project Structure
+
+```
+MLOPs-Production-Ready-Machine-Learning-Project/
+│
+├── us_visa/                  # Core ML package
+│   ├── components/           # Data ingestion, validation, transformation, training
+│   ├── pipeline/             # Training & prediction pipelines
+│   ├── entity/               # Config & artifact data classes
+│   └── constants/            # Global constants
+│
+├── notebook/                 # EDA and research notebooks
+├── config/                   # YAML configuration files
+├── static/                   # Static web assets
+├── templates/                # HTML templates (Jinja2)
+├── app.py                    # FastAPI application
+├── demo.py                   # Demo runner script
+├── requirements.txt          # Python dependencies
+├── Dockerfile                # Docker container config
+├── setup.py                  # Package installer
+└── README.md
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| Python 3.8+ | Core language |
+| Scikit-learn | ML modelling |
+| MongoDB | Data storage |
+| AWS S3 | Model artifact registry |
+| FastAPI | REST API serving |
+| Docker | Containerised deployment |
+| Evidently AI | ML monitoring & drift detection |
+
+---
+
+## 🚀 How to Run
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/homeshwarnelakurthi/MLOPs-Production-Ready-Machine-Learning-Project.git
+cd MLOPs-Production-Ready-Machine-Learning-Project
+```
+
+### 2. Create a virtual environment
 ```bash
 conda create -n visa python=3.8 -y
-```
-
-```bash
 conda activate visa
 ```
 
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## Workflow:
-
-1. constants
-2. entity
-3. components
-4. pipeline
-5. Main file
-
-
-
-### Export the  environment variable
+### 4. Set environment variables
 ```bash
-
-
-export MONGODB_URL="mongodb+srv://<username>:<password>...."
-
-export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
-
-export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
-
-
+export MONGODB_URL="mongodb+srv://<username>:<password>@cluster.mongodb.net"
+export AWS_ACCESS_KEY_ID=<your_key_id>
+export AWS_SECRET_ACCESS_KEY=<your_secret_key>
 ```
 
+### 5. Run the application
+```bash
+python app.py
+```
 
-# AWS-CICD-Deployment-with-Github-Actions
+### 6. Run with Docker
+```bash
+docker build -t us-visa-predictor .
+docker run -p 8080:8080 us-visa-predictor
+```
 
-## 1. Login to AWS console.
+---
 
-## 2. Create IAM user for deployment
+## 🔗 API Endpoints
 
-	#with specific access
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/` | Home page |
+| `POST` | `/predict` | Predict visa approval |
+| `GET` | `/train` | Trigger training pipeline |
 
-	1. EC2 access : It is virtual machine
+---
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+## 👨‍💻 Author
 
+**Homeswar Rao Nelakurthi**  
+[![GitHub](https://img.shields.io/badge/GitHub-homeshwarnelakurthi-181717?style=flat&logo=github)](https://github.com/homeshwarnelakurthi)
 
-	#Description: About the deployment
+---
 
-	1. Build docker image of the source code
+## 📄 License
 
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-   - AWS_ACCESS_KEY_ID
-   - AWS_SECRET_ACCESS_KEY
-   - AWS_DEFAULT_REGION
-   - ECR_REPO
-
-    
-
-
+This project is open source and available under the [MIT License](LICENSE).
